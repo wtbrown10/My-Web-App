@@ -1,24 +1,39 @@
 package com.in28minutes.springboot.mywebapp.todo;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
-
+@Entity
 public class Todo {
+    @Id
+    @GeneratedValue
     private int id;
+//    @Column(name="name") changes column name in database
     private String username;
     @Size(min = 10, message = "Enter atleast 10 characters")
     private String description;
     private LocalDate targetDate;
     private boolean done;
 
+    public Todo() {
+    }
+
     public Todo(int id, String username, String description, LocalDate targetDate, boolean done) {
+        super();
         this.id = id;
         this.username = username;
         this.description = description;
         this.targetDate = targetDate;
         this.done = done;
     }
+
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
 
     @Override
     public String toString() {
@@ -70,4 +85,8 @@ public class Todo {
     public void setDone(boolean done) {
         this.done = done;
     }
+
+//    public Long getId() {
+//        return id;
+//    }
 }
